@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — ABADA.AI</title>
+<meta name="description" content="Send ABADA.AI a message. We read every message and reply by email.">
+<!-- Keeps search engines from listing this page before launch. Remove this line at launch. -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="favicon.ico?v=2" sizes="32x32">
+<link rel="icon" href="icon.svg?v=2" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F7F7FB;--surface:#FFFFFF;--ink:#15133D;--muted:#4E4C74;--line:#DFDEEC;--line-strong:#B9B7D3;--accent-ink:#2F2A93;--green:#00D47E;
+    --mark:#2F2A93;--mark-dot:#00A35F;--chip:#EFEEF8;--error:#B42318;
+    --serif:'Newsreader',Georgia,serif;--sans:'IBM Plex Sans',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{--bg:#0D0B24;--surface:#16143A;--ink:#EEEDFB;--muted:#ADAAD3;--line:#2A2756;--line-strong:#4A4682;--accent-ink:#2EF2A0;--green:#2EF2A0;--mark:#9C97FF;--mark-dot:#2EF2A0;--chip:#221F4D;--error:#FF9C8F;}
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  [hidden]{display:none !important}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100vh}
+  a{color:var(--accent-ink)}
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--accent-ink);outline-offset:2px}
+  .wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,64px)}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:24px;padding-bottom:24px}
+  .back{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:999px;color:var(--ink);font-size:15px;font-weight:500;text-decoration:none;white-space:nowrap}
+  .back:hover{border-color:var(--accent-ink)}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+  .wordmark{font-family:var(--serif);font-size:30px;font-weight:600;letter-spacing:-.01em;line-height:1}
+  .wordmark span{color:var(--mark-dot)}
+  main{flex:1}
+  main .wrap{padding-top:clamp(32px,6vh,72px);padding-bottom:clamp(48px,8vh,96px)}
+  .layout{display:flex;flex-wrap:wrap;gap:clamp(40px,6vw,80px);align-items:flex-start}
+  .form-col{flex:999 1 560px;min-width:0}
+  .side{flex:1 1 320px;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px}
+  .eyebrow{margin:0 0 18px;font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);display:flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:8px;height:8px;border-radius:999px;background:var(--green)}
+  h1{margin:0;font-family:var(--serif);font-weight:500;font-size:clamp(40px,5vw,68px);line-height:1.04;letter-spacing:-.02em}
+  .lede{margin:22px 0 0;max-width:640px;font-size:clamp(18px,1.6vw,20px);color:var(--muted)}
+  form{margin-top:36px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 20px}
+  .field{display:flex;flex-direction:column;gap:6px;min-width:0}
+  .full{grid-column:1 / -1}
+  @media (max-width:640px){form{grid-template-columns:minmax(0,1fr)}}
+  label{font-size:15px;font-weight:500}
+  .req{color:var(--accent-ink)}
+  input[type=text],input[type=email],select,textarea{width:100%;min-height:50px;padding:12px 14px;border-radius:10px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);font:400 16px var(--sans)}
+  textarea{min-height:170px;resize:vertical;line-height:1.5}
+  select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 20px) 21px,calc(100% - 15px) 21px;background-size:5px 5px;background-repeat:no-repeat;padding-right:40px}
+  .hint{font-size:14px;color:var(--muted)}
+  .field-error{margin:0;font-size:14px;line-height:1.45;color:var(--error)}
+  .field-error a{color:var(--error);font-weight:500}
+  input[aria-invalid=true]{border-color:var(--error)}
+  .captcha{grid-column:1 / -1;min-height:78px}
+  input::placeholder,textarea::placeholder{color:var(--muted);opacity:.75}
+  .notice{grid-column:1 / -1;margin:4px 0 0;padding:14px 16px;background:var(--chip);border-radius:12px;font-size:15px;color:var(--ink)}
+  .actions{grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:999px;border:0;background:var(--green);color:#0B0A2A;font:600 16px var(--sans);cursor:pointer;text-decoration:none}
+  .btn:hover{filter:brightness(1.06)}
+  .btn[disabled]{opacity:.6;cursor:progress}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line-strong)}
+  .btn-ghost:hover{filter:none;border-color:var(--accent-ink)}
+  .status{grid-column:1 / -1;margin:0;font-size:15px}
+  .status.error{color:var(--error)}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  .success{margin-top:36px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(24px,4vw,40px)}
+  .success h2{margin:0 0 10px;font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,36px);line-height:1.15}
+  .success p{margin:0 0 12px;color:var(--muted)}
+  .side-label{margin:0 0 14px;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink)}
+  .ways{list-style:none;margin:0;padding:0}
+  .ways li{padding:14px 0;border-bottom:1px solid var(--line)}
+  .ways li:first-child{padding-top:0}
+  .ways li:last-child{border-bottom:0;padding-bottom:0}
+  .ways strong{display:block;font-family:var(--serif);font-size:20px;font-weight:500;line-height:1.3}
+  .ways .d{display:block;font-size:15px;color:var(--muted)}
+  .ways a{font-size:15px;font-weight:500}
+  .addr{font-family:var(--mono);font-size:15px;color:var(--ink);user-select:all}
+  footer{border-top:1px solid var(--line)}
+  footer .wrap{padding-top:24px;padding-bottom:24px;font-size:14px;color:var(--muted);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px}
+  .meaning em{font-family:var(--serif);font-size:1.08em}
+  footer a{color:var(--accent-ink)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="./" data-home aria-label="ABADA.AI home">
+      <svg width="38" height="38" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 40 V18 Q12 8 20 7 M36 40 V18 Q36 8 28 7" fill="none" stroke="var(--mark)" stroke-width="5" stroke-linecap="round"/><circle cx="24" cy="30" r="4.6" fill="var(--mark-dot)"/></svg>
+      <span class="wordmark">abada<span>.ai</span></span>
+    </a>
+    <a class="back" href="./" data-back><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3.5M7.5 3.5 3 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-back-label>Back to home</span></a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap layout">
+    <div class="form-col">
+      <p class="eyebrow">Contact</p>
+      <h1>Send us a message.</h1>
+      <p class="lede">A question, an idea for the blog, or a chance to work together. We read every message and reply by email, usually within a few business days.</p>
+
+      <!--
+        FORM CONNECTION (Web3Forms, free)
+        Uses its own Web3Forms form, "ABADA contact" (account hello@abada.ai), so messages go to
+        hello@abada.ai while process check requests go to free-process-check@abada.ai.
+        Connected on Oct 12. To change the key, replace the value below (keep the quotes);
+        you can find it in the Web3Forms dashboard under that form.
+      -->
+      <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+        <input type="hidden" name="access_key" value="53ced771-8f40-4f17-bedc-265ca55b773c">
+        <input type="hidden" name="subject" value="New message from abada.ai">
+        <input type="hidden" name="from_name" value="abada.ai contact form">
+        <input type="hidden" name="Sent from page" value="">
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="field">
+          <label for="c-name">Your name <span class="req" aria-hidden="true">*</span></label>
+          <input id="c-name" type="text" name="name" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="c-email">Work email <span class="req" aria-hidden="true">*</span></label>
+          <input id="c-email" type="email" name="email" autocomplete="email" required aria-describedby="c-email-hint c-email-error">
+          <span class="hint" id="c-email-hint">Your organization’s address. Personal addresses such as Gmail aren’t accepted.</span>
+          <p class="field-error" id="c-email-error" hidden aria-live="polite"></p>
+        </div>
+        <div class="field">
+          <label for="c-org">Organization <span class="req" aria-hidden="true">*</span></label>
+          <input id="c-org" type="text" name="Organization" autocomplete="organization" required>
+        </div>
+        <div class="field">
+          <label for="c-type">Type of organization <span class="req" aria-hidden="true">*</span></label>
+          <select id="c-type" name="Organization type" required>
+            <option value="">Choose one</option>
+            <option>Small company</option>
+            <option>Community or nonprofit organization</option>
+            <option>Healthcare provider</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="c-about">What's it about?</label>
+          <select id="c-about" name="About">
+            <option value="A general question">A general question</option>
+            <option value="Working together" data-key="work">Working together</option>
+            <option value="Suggest a blog topic" data-key="topic">Suggest a blog topic</option>
+            <option value="A correction to a post" data-key="correction">A correction to a post</option>
+            <option value="Something else">Something else</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="c-message">Your message <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="c-message" name="message" required></textarea>
+        </div>
+
+        <p class="notice">Please don't share personally identifiable information (PII), patient health information (PHI) if you're a healthcare organization, or other confidential data. We use your details only to reply to you.</p>
+
+        <div class="captcha"><div class="h-captcha" data-captcha="true"></div></div>
+
+        <div class="actions">
+          <button class="btn" type="submit" id="c-submit">Send message</button>
+          <a class="btn btn-ghost" href="./" data-home>Cancel</a>
+        </div>
+        <p class="status" id="c-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="success" id="c-success" hidden tabindex="-1">
+        <h2>Thanks, your message is on its way.</h2>
+        <p>We'll reply to <strong id="c-success-email">your email</strong>, usually within a few business days.</p>
+        <a class="btn" href="./" data-back>Back to abada.ai</a>
+      </div>
+    </div>
+
+    <aside class="side" aria-labelledby="ways-title">
+      <p class="side-label" id="ways-title">Other ways to reach us</p>
+      <ul class="ways">
+        <li><strong>Have a process in mind?</strong><span class="d">Tell us about one process and we'll reply with a candid view of whether it's worth automating.</span><a href="process-check.html">Get a free process check →</a></li>
+        <li><strong>Our email address</strong><span class="d">No organization email address, or prefer your own email app? Write to us at:</span><span class="addr">hello@abada.ai</span></li>
+      </ul>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="y">2026</span> ABADA.AI</span>
+    <span class="meaning">ABADA, from Sanskrit <em>a-bādha</em>: unobstructed.</span>
+  </div>
+</footer>
+
+<script>
+/* Work email check (shared by the process check and contact forms).
+   Rejects: badly formed addresses, personal mailboxes (Gmail, Outlook.com, Yahoo…),
+   throwaway inboxes, domains that don't exist, and domains that can't receive email.
+   The domain lookup uses public DNS (Cloudflare, then Google). If both are unreachable,
+   the address is allowed so real people are never locked out; the "I'm human" check
+   and Web3Forms' own spam filter still apply. To allow or block another domain,
+   edit the PERSONAL or THROWAWAY lists below. */
+window.AbadaEmailCheck = (function () {
+  var PERSONAL = ('gmail.com googlemail.com yahoo.com ymail.com rocketmail.com outlook.com hotmail.com live.com msn.com ' +
+    'icloud.com me.com mac.com aol.com aim.com protonmail.com protonmail.ch proton.me pm.me gmx.com gmx.net gmx.de gmx.us ' +
+    'mail.com email.com zohomail.com yandex.com yandex.ru mail.ru inbox.com hushmail.com tutanota.com tuta.io tutamail.com ' +
+    'fastmail.com fastmail.fm rediffmail.com comcast.net att.net sbcglobal.net verizon.net bellsouth.net cox.net charter.net ' +
+    'earthlink.net juno.com netzero.net optonline.net frontier.com windstream.net qq.com 163.com 126.com sina.com ' +
+    'web.de t-online.de freenet.de orange.fr free.fr laposte.net sfr.fr wanadoo.fr libero.it virgilio.it btinternet.com ' +
+    'sky.com virginmedia.com talktalk.net rogers.com shaw.ca sympatico.ca bigpond.com optusnet.com.au naver.com daum.net ' +
+    'hanmail.net seznam.cz wp.pl o2.pl interia.pl yahoo.co.in yahoo.co.uk yahoo.in example.com example.org example.net test.com').split(' ');
+  var PERSONAL_FAMILIES = /^(yahoo|hotmail|outlook|live|aol|gmx|yandex)\.[a-z]{2,}(\.[a-z]{2,})?$/;
+  var THROWAWAY = ('mailinator.com mailinator.net guerrillamail.com guerrillamail.net guerrillamail.org guerrillamail.biz ' +
+    'guerrillamail.de guerrillamail.info guerrillamailblock.com sharklasers.com grr.la pokemail.net spam4.me ' +
+    '10minutemail.com 10minutemail.net 10minutemail.co.uk 20minutemail.com temp-mail.org temp-mail.io tempmail.com tempmail.net ' +
+    'tempmailo.com tempr.email tempinbox.com throwawaymail.com yopmail.com yopmail.fr yopmail.net trashmail.com trashmail.de ' +
+    'trashmail.net getnada.com nada.email dispostable.com maildrop.cc mailnesia.com mintemail.com mohmal.com fakeinbox.com ' +
+    'emailondeck.com burnermail.io spamgourmet.com mailcatch.com mytemp.email moakt.com 33mail.com emailfake.com ' +
+    'getairmail.com inboxkitten.com mail.tm mail.gw tmail.ws tmpmail.org tmpmail.net 1secmail.com 1secmail.org 1secmail.net ' +
+    'discard.email spambox.us jetable.org mailpoof.com harakirimail.com mvrht.com emailtemporanea.net crazymailing.com ' +
+    'tempmail.plus mailsac.com anonaddy.me simplelogin.co duck.com mailbox.in.ua byom.de').split(' ');
+
+  var MAILTO = 'mailto:hello@abada.ai';
+  var cache = {};
+
+  function domainOf(email) {
+    var at = email.lastIndexOf('@');
+    return at > 0 ? email.slice(at + 1).toLowerCase().replace(/\.$/, '') : '';
+  }
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  function lookup(url) {
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 4000) : null;
+    return fetch(url, { headers: { 'Accept': 'application/dns-json' }, signal: ctrl ? ctrl.signal : undefined })
+      .then(function (r) { if (!r.ok) throw new Error('dns ' + r.status); return r.json(); })
+      .finally(function () { if (timer) clearTimeout(timer); });
+  }
+
+  // 'ok' | 'nodomain' | 'nomail' | 'unknown'
+  function mx(domain) {
+    if (cache[domain]) return cache[domain];
+    var q = encodeURIComponent(domain);
+    var p = lookup('https://cloudflare-dns.com/dns-query?name=' + q + '&type=MX')
+      .catch(function () { return lookup('https://dns.google/resolve?name=' + q + '&type=MX'); })
+      .then(function (j) {
+        if (j.Status === 3) return 'nodomain';
+        if (j.Status !== 0) return 'unknown';
+        var recs = (j.Answer || []).filter(function (a) { return a.type === 15; });
+        var usable = recs.filter(function (a) { return !/^\s*0\s+\.\s*$/.test(a.data); });
+        return usable.length ? 'ok' : 'nomail';
+      })
+      .catch(function () { return 'unknown'; });
+    cache[domain] = p;
+    p.then(function (v) { if (v === 'unknown') delete cache[domain]; });
+    return p;
+  }
+
+  // Resolves to { ok: true } or { ok: false, html: '<message>' }
+  function check(email, mailSubject) {
+    email = String(email || '').trim();
+    var mailto = MAILTO + (mailSubject ? '?subject=' + encodeURIComponent(mailSubject) : '');
+    var domain = domainOf(email);
+    if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(email) || !domain) {
+      return Promise.resolve({ ok: false, html: 'Please enter a valid email address.' });
+    }
+    if (PERSONAL.indexOf(domain) !== -1 || PERSONAL_FAMILIES.test(domain)) {
+      return Promise.resolve({ ok: false, html: 'Please use your organization’s email address. No organization email? Write to us at <a href="' + mailto + '">hello@abada.ai</a>.' });
+    }
+    if (THROWAWAY.indexOf(domain) !== -1) {
+      return Promise.resolve({ ok: false, html: 'Temporary email addresses aren’t accepted. Please use your organization’s email address.' });
+    }
+    return mx(domain).then(function (r) {
+      if (r === 'nodomain') return { ok: false, html: 'We couldn’t find “' + esc(domain) + '”. Please check the spelling of your email address.' };
+      if (r === 'nomail') return { ok: false, html: '“' + esc(domain) + '” isn’t set up to receive email. Please check your address or use another work email.' };
+      return { ok: true };
+    });
+  }
+
+  // Shows the result under the email field. Returns a promise of true/false.
+  function attach(input, errorEl, mailSubject) {
+    var seq = 0;
+    function run() {
+      var mine = ++seq;
+      if (!input.value.trim()) { show(null); return Promise.resolve(false); }
+      return check(input.value, mailSubject).then(function (res) {
+        if (mine === seq) show(res.ok ? null : res.html);
+        return res.ok;
+      });
+    }
+    function show(html) {
+      if (html) { errorEl.innerHTML = html; errorEl.hidden = false; input.setAttribute('aria-invalid', 'true'); }
+      else { errorEl.innerHTML = ''; errorEl.hidden = true; input.removeAttribute('aria-invalid'); }
+    }
+    // Short delay so the message doesn't shift the page while someone is clicking Send.
+    input.addEventListener('change', function () { setTimeout(run, 250); });
+    input.addEventListener('input', function () { if (!errorEl.hidden) show(null); });
+    return run;
+  }
+
+  return { check: check, attach: attach };
+})();
+</script>
+<script>
+(function () {
+  document.getElementById('y').textContent = new Date().getFullYear();
+  var form = document.getElementById('contact-form');
+  var status = document.getElementById('c-status');
+  var button = document.getElementById('c-submit');
+  var success = document.getElementById('c-success');
+  var about = document.getElementById('c-about');
+  var params = new URLSearchParams(location.search);
+
+  // Links can preselect the topic, e.g. contact.html?about=topic (blog "Suggest a topic").
+  var key = params.get('about');
+  if (key) {
+    for (var i = 0; i < about.options.length; i++) {
+      if (about.options[i].getAttribute('data-key') === key) { about.selectedIndex = i; break; }
+    }
+  }
+
+  // Home page for Cancel, "Back to home" and the logo: always the abada.ai home page.
+  // Before launch that's the home page the visitor started from (the coming-soon page or
+  // the full home page preview), remembered for this browser tab; otherwise abada.ai.
+  var HOME_PAGES = /^\/(index\.html|preview-index\.html)?$/;
+  var home = './';
+  try {
+    var r = document.referrer ? new URL(document.referrer) : null;
+    if (r && r.origin === location.origin && HOME_PAGES.test(r.pathname)) sessionStorage.setItem('abadaHome', r.pathname);
+    var saved = sessionStorage.getItem('abadaHome');
+    if (saved && HOME_PAGES.test(saved)) home = saved;
+  } catch (err) {}
+  document.querySelectorAll('[data-home]').forEach(function (a) { a.href = home; });
+  document.querySelectorAll('[data-back]').forEach(function (a) { a.href = home; });
+
+  // Visitors from the blog get "Back to the blog" in the header and after sending (Cancel still goes home).
+  // The page they came from is also included in the message.
+  var back = null, isBlog = false;
+  function trusted(u) {
+    try {
+      var url = new URL(u, location.href);
+      var ok = url.origin === location.origin || url.hostname === 'abada.ai' || url.hostname === 'blog.abada.ai';
+      return ok && url.pathname.indexOf('contact') === -1 ? url : null;
+    } catch (err) { return null; }
+  }
+  var from = params.get('from') && trusted(params.get('from'));
+  var ref = document.referrer && trusted(document.referrer);
+  back = from || ref;
+  if (back) {
+    isBlog = back.hostname === 'blog.abada.ai';
+    if (isBlog) {
+      document.querySelectorAll('[data-back]').forEach(function (a) { a.href = back.href; });
+      document.querySelector('[data-back-label]').textContent = 'Back to the blog';
+      document.querySelectorAll('.success [data-back]').forEach(function (a) { a.textContent = 'Back to the blog'; });
+    }
+    form.elements['Sent from page'].value = back.href;
+  }
+
+  var emailInput = document.getElementById('c-email');
+  var checkEmail = AbadaEmailCheck.attach(emailInput, document.getElementById('c-email-error'), null);
+  var captchaBox = form.querySelector('.h-captcha');
+  if (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) captchaBox.setAttribute('data-theme', 'dark');
+
+  function setStatus(msg, isError) {
+    status.textContent = msg;
+    status.className = 'status' + (isError ? ' error' : '');
+  }
+  function ready() {
+    button.disabled = false;
+    button.textContent = 'Send message';
+  }
+  function resetCaptcha() {
+    try { if (window.hcaptcha) window.hcaptcha.reset(); } catch (err) {}
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (button.disabled) return;
+    if (!form.checkValidity()) {
+      var firstInvalid = form.querySelector(':invalid');
+      setStatus('Please fill in the required fields marked *.', true);
+      if (firstInvalid) firstInvalid.focus();
+      return;
+    }
+    if (form.access_key.value === 'YOUR-CONTACT-ACCESS-KEY') {
+      setStatus('This form isn’t connected yet. Please write to hello@abada.ai instead.', true);
+      return;
+    }
+    button.disabled = true;
+    button.textContent = 'Checking…';
+    setStatus('', false);
+
+    checkEmail().then(function (emailOk) {
+      if (!emailOk) {
+        ready();
+        setStatus('Please check your work email address.', true);
+        emailInput.focus();
+        return;
+      }
+      var token = form.querySelector('[name="h-captcha-response"]');
+      if (!token) {
+        ready();
+        setStatus('The “I’m human” check didn’t load. Please refresh the page, or turn off content blockers for abada.ai.', true);
+        return;
+      }
+      if (!token.value) {
+        ready();
+        setStatus('Please complete the “I’m human” check.', true);
+        return;
+      }
+      form.subject.value = 'New message from abada.ai: ' + about.value;
+      button.textContent = 'Sending…';
+
+      var data = {};
+      new FormData(form).forEach(function (value, k) { data[k] = value; });
+      delete data['g-recaptcha-response'];
+      if (!data['Sent from page']) delete data['Sent from page'];
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      })
+        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, body: j }; }); })
+        .then(function (res) {
+          if (res.ok && res.body && res.body.success) {
+            document.getElementById('c-success-email').textContent = data.email;
+            form.hidden = true;
+            success.hidden = false;
+            success.focus();
+          } else {
+            throw new Error((res.body && res.body.message) || 'Something went wrong.');
+          }
+        })
+        .catch(function () {
+          setStatus('Sorry, that didn’t send. Please try again in a moment, or write to hello@abada.ai.', true);
+          resetCaptcha();
+          ready();
+        });
+    });
+  });
+})();
+</script>
+<script src="https://web3forms.com/client/script.js" async defer></script>
+</body>
+</html>
