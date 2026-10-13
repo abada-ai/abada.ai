@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free process check — ABADA.AI</title>
+<meta name="description" content="Tell us about one process. We'll reply with a candid view of whether it's worth automating. Free, for small companies and community organizations.">
+<!-- Keeps search engines from listing this page before launch. Remove this line at launch. -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="favicon.ico?v=2" sizes="32x32">
+<link rel="icon" href="icon.svg?v=2" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F7F7FB;--surface:#FFFFFF;--ink:#15133D;--muted:#4E4C74;--line:#DFDEEC;--line-strong:#B9B7D3;--accent-ink:#2F2A93;--green:#00D47E;
+    --mark:#2F2A93;--mark-dot:#00A35F;--chip:#EFEEF8;--error:#B42318;
+    --serif:'Newsreader',Georgia,serif;--sans:'IBM Plex Sans',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{--bg:#0D0B24;--surface:#16143A;--ink:#EEEDFB;--muted:#ADAAD3;--line:#2A2756;--line-strong:#4A4682;--accent-ink:#2EF2A0;--green:#2EF2A0;--mark:#9C97FF;--mark-dot:#2EF2A0;--chip:#221F4D;--error:#FF9C8F;}
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  [hidden]{display:none !important}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100vh}
+  a{color:var(--accent-ink)}
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--accent-ink);outline-offset:2px}
+  .wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,64px)}
+  header .wrap{display:flex;align-items:center;gap:10px;padding-top:24px;padding-bottom:24px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+  .wordmark{font-family:var(--serif);font-size:30px;font-weight:600;letter-spacing:-.01em;line-height:1}
+  .wordmark span{color:var(--mark-dot)}
+  main{flex:1}
+  main .wrap{padding-top:clamp(32px,6vh,72px);padding-bottom:clamp(48px,8vh,96px)}
+  .layout{display:flex;flex-wrap:wrap;gap:clamp(40px,6vw,80px);align-items:flex-start}
+  .form-col{flex:999 1 560px;min-width:0}
+  .side{flex:1 1 320px;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px}
+  .eyebrow{margin:0 0 18px;font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);display:flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:8px;height:8px;border-radius:999px;background:var(--green)}
+  h1{margin:0;font-family:var(--serif);font-weight:500;font-size:clamp(40px,5vw,68px);line-height:1.04;letter-spacing:-.02em}
+  .lede{margin:22px 0 0;max-width:640px;font-size:clamp(18px,1.6vw,20px);color:var(--muted)}
+  form{margin-top:36px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 20px}
+  .field{display:flex;flex-direction:column;gap:6px;min-width:0}
+  .full{grid-column:1 / -1}
+  @media (max-width:640px){form{grid-template-columns:minmax(0,1fr)}}
+  label{font-size:15px;font-weight:500}
+  .req{color:var(--accent-ink)}
+  .hint{font-size:14px;color:var(--muted)}
+  input[type=text],input[type=email],select,textarea{width:100%;min-height:50px;padding:12px 14px;border-radius:10px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);font:400 16px var(--sans)}
+  textarea{min-height:110px;resize:vertical;line-height:1.5}
+  select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 20px) 21px,calc(100% - 15px) 21px;background-size:5px 5px;background-repeat:no-repeat;padding-right:40px}
+  input::placeholder,textarea::placeholder{color:var(--muted);opacity:.75}
+  .notice{grid-column:1 / -1;margin:4px 0 0;padding:14px 16px;background:var(--chip);border-radius:12px;font-size:15px;color:var(--ink)}
+  .check{grid-column:1 / -1;display:flex;gap:12px;align-items:flex-start;font-size:15px}
+  .check input{width:20px;height:20px;margin:3px 0 0;flex:0 0 auto;accent-color:var(--accent-ink)}
+  .actions{grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:999px;border:0;background:var(--green);color:#0B0A2A;font:600 16px var(--sans);cursor:pointer;text-decoration:none}
+  .btn:hover{filter:brightness(1.06)}
+  .btn[disabled]{opacity:.6;cursor:progress}
+  .alt{font-size:15px;color:var(--muted)}
+  .status{grid-column:1 / -1;margin:0;font-size:15px}
+  .status.error{color:var(--error)}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  .success{margin-top:36px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(24px,4vw,40px)}
+  .success h2{margin:0 0 10px;font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,36px);line-height:1.15}
+  .success p{margin:0 0 12px;color:var(--muted)}
+  .side-label{margin:0 0 14px;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink)}
+  .steps{list-style:none;margin:0;padding:0}
+  .steps li{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .steps li:last-child{border-bottom:0}
+  .num{font-family:var(--mono);font-size:13px;color:var(--accent-ink);padding-top:3px}
+  .steps strong{display:block;font-family:var(--serif);font-size:20px;font-weight:500;line-height:1.3}
+  .steps span.d{font-size:15px;color:var(--muted)}
+  footer{border-top:1px solid var(--line)}
+  footer .wrap{padding-top:24px;padding-bottom:24px;font-size:14px;color:var(--muted);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px}
+  .meaning em{font-family:var(--serif);font-size:1.08em}
+  footer a{color:var(--accent-ink)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="ABADA.AI home">
+      <svg width="38" height="38" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 40 V18 Q12 8 20 7 M36 40 V18 Q36 8 28 7" fill="none" stroke="var(--mark)" stroke-width="5" stroke-linecap="round"/><circle cx="24" cy="30" r="4.6" fill="var(--mark-dot)"/></svg>
+      <span class="wordmark">abada<span>.ai</span></span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap layout">
+    <div class="form-col">
+      <p class="eyebrow">Free process check</p>
+      <h1>Is this process worth automating?</h1>
+      <p class="lede">Tell us about one process. We'll reply by email with a candid view of whether it's ready for automation, and what to look at first. Free, with no obligation.</p>
+
+      <!--
+        FORM CONNECTION (Web3Forms, free)
+        Connected to the Web3Forms form "ABADA free process check" (account hello@abada.ai).
+        Submissions are emailed to hello@abada.ai. To change the key, replace the value below
+        (keep the quotes); you can find it in the Web3Forms dashboard.
+      -->
+      <form id="process-check" action="https://api.web3forms.com/submit" method="POST" novalidate>
+        <input type="hidden" name="access_key" value="981b9532-4b4a-4bb6-9de6-29c977cebdca">
+        <input type="hidden" name="subject" value="New free process check request (abada.ai)">
+        <input type="hidden" name="from_name" value="abada.ai process check">
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="field">
+          <label for="f-name">Your name <span class="req" aria-hidden="true">*</span></label>
+          <input id="f-name" type="text" name="name" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="f-email">Work email <span class="req" aria-hidden="true">*</span></label>
+          <input id="f-email" type="email" name="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="f-org">Organization <span class="req" aria-hidden="true">*</span></label>
+          <input id="f-org" type="text" name="Organization" autocomplete="organization" required>
+        </div>
+        <div class="field">
+          <label for="f-type">Type of organization</label>
+          <select id="f-type" name="Organization type">
+            <option value="">Choose one</option>
+            <option>Small company</option>
+            <option>Community or nonprofit organization</option>
+            <option>Healthcare provider</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-size">Number of people</label>
+          <select id="f-size" name="Number of people">
+            <option value="">Choose one</option>
+            <option>1–10</option>
+            <option>11–50</option>
+            <option>51–200</option>
+            <option>More than 200</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-freq">How often the process runs</label>
+          <select id="f-freq" name="How often it runs">
+            <option value="">Choose one</option>
+            <option>Many times a day</option>
+            <option>Daily</option>
+            <option>Weekly</option>
+            <option>Monthly</option>
+            <option>Less often</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="f-process">The process <span class="req" aria-hidden="true">*</span></label>
+          <input id="f-process" type="text" name="Process" placeholder="For example: processing supplier invoices" required>
+        </div>
+        <div class="field full">
+          <label for="f-today">What happens today</label>
+          <textarea id="f-today" name="What happens today" placeholder="The main steps, who does them, and where the information comes from."></textarea>
+        </div>
+        <div class="field full">
+          <label for="f-systems">Systems it uses</label>
+          <input id="f-systems" type="text" name="Systems it uses" placeholder="For example: email, Excel, QuickBooks, a scheduling system">
+        </div>
+        <div class="field full">
+          <label for="f-slow">What slows it down</label>
+          <textarea id="f-slow" name="What slows it down" placeholder="Rework, waiting, copying data between systems, errors, exceptions…"></textarea>
+        </div>
+
+        <p class="notice">Please describe the process in general terms. Don't share personally identifiable information (PII), patient health information (PHI) if you're a healthcare organization, or other confidential data. We use your answers only to reply to you.</p>
+
+        <label class="check" for="f-consent">
+          <input id="f-consent" type="checkbox" name="Consent" value="Yes, OK to email me about this request" required>
+          <span>I'm happy for ABADA.AI to email me about this request. <span class="req" aria-hidden="true">*</span></span>
+        </label>
+
+        <div class="actions">
+          <button class="btn" type="submit" id="f-submit">Send my process</button>
+          <span class="alt">Prefer email? <a href="mailto:hello@abada.ai?subject=Free%20process%20check">hello@abada.ai</a></span>
+        </div>
+        <p class="status" id="f-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="success" id="f-success" hidden tabindex="-1">
+        <h2>Thanks, we've got it.</h2>
+        <p>We'll read your answers and reply to <strong id="f-success-email">your email</strong> with a candid view of whether the process is worth automating.</p>
+        <p>In the meantime, you're welcome to write to <a href="mailto:hello@abada.ai">hello@abada.ai</a>.</p>
+        <a class="btn" href="./">Back to abada.ai</a>
+      </div>
+    </div>
+
+    <aside class="side" aria-labelledby="next-title">
+      <p class="side-label" id="next-title">What happens next</p>
+      <ol class="steps">
+        <li><span class="num">01</span><div><strong>We read your answers</strong><span class="d">A person reads every request, usually within a few business days.</span></div></li>
+        <li><span class="num">02</span><div><strong>We score the process</strong><span class="d">Five readiness questions: volume, rule stability, input quality, systems and exceptions.</span></div></li>
+        <li><span class="num">03</span><div><strong>You get a plain-language reply</strong><span class="d">Whether it's worth automating, the likely payoff, and the first step.</span></div></li>
+      </ol>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="y">2026</span> ABADA.AI</span>
+    <span>Questions? <a href="mailto:hello@abada.ai">hello@abada.ai</a></span>
+    <span class="meaning">ABADA, from Sanskrit <em>a-bādha</em>: unobstructed.</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  document.getElementById('y').textContent = new Date().getFullYear();
+  var form = document.getElementById('process-check');
+  var status = document.getElementById('f-status');
+  var button = document.getElementById('f-submit');
+  var success = document.getElementById('f-success');
+
+  function setStatus(msg, isError) {
+    status.textContent = msg;
+    status.className = 'status' + (isError ? ' error' : '');
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      var firstInvalid = form.querySelector(':invalid');
+      setStatus('Please fill in the required fields marked *.', true);
+      if (firstInvalid) firstInvalid.focus();
+      return;
+    }
+    if (form.access_key.value === 'YOUR-ACCESS-KEY') {
+      setStatus('This form isn’t connected yet. Please email hello@abada.ai instead.', true);
+      return;
+    }
+    button.disabled = true;
+    button.textContent = 'Sending…';
+    setStatus('', false);
+
+    var data = {};
+    new FormData(form).forEach(function (value, key) { data[key] = value; });
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    })
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, body: j }; }); })
+      .then(function (res) {
+        if (res.ok && res.body && res.body.success) {
+          document.getElementById('f-success-email').textContent = data.email;
+          form.hidden = true;
+          success.hidden = false;
+          success.focus();
+        } else {
+          throw new Error((res.body && res.body.message) || 'Something went wrong.');
+        }
+      })
+      .catch(function () {
+        setStatus('Sorry, that didn’t send. Please try again, or email hello@abada.ai.', true);
+        button.disabled = false;
+        button.textContent = 'Send my process';
+      });
+  });
+})();
+</script>
+</body>
+</html>
